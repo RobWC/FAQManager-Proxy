@@ -19,9 +19,9 @@ if (cluster.isMaster) {
 	
 	var options = {
 	  https: {
-		key: fs.readFileSync('./keys/ninjafaq.com.key', 'utf8'),
-		cert: fs.readFileSync('./keys/ninjafaq.com.crt', 'utf8'),
-		ca: fs.readFileSync('./keys/sf_bundle.crt','utf8')
+		key: fs.readFileSync('./keys/juniperfaqdotnet.key', 'utf8'),
+		cert: fs.readFileSync('./keys/www_juniperfaq_net.crt', 'utf8'),
+		ca: fs.readFileSync('./keys/DigiCertCA.crt','utf8')
 	  }
 	};
 	
@@ -43,7 +43,7 @@ if (cluster.isMaster) {
       });
     } else if (req.url == '/') {
       res.writeHead(302, {
-      'Location': 'https://www.ninjafaq.com/faqman/_design/FAQcouch/index.html'
+      'Location': 'https://www.juniperfaq.net/faqman/_design/FAQcouch/index.html'
       });
       res.end();
 	  } else {
@@ -55,9 +55,16 @@ if (cluster.isMaster) {
 	}).listen(443);
 	
 	http.createServer(function(req,res) {
-	  res.writeHead(302, {
-		'Location': 'https://www.ninjafaq.com'
-	  });
-	  res.end();
+	  if (req.url == '/register') {
+      res.writeHead(302, {
+        'Location': 'https://www.juniperfaq.net/register'
+        });
+      res.end();
+	  } else {
+      res.writeHead(302, {
+      'Location': 'https://www.juniperfaq.net/faqman/_design/FAQcouch/index.html'
+      });
+      res.end();
+    };
 	}).listen(80);
 };
