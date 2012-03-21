@@ -1,0 +1,8 @@
+{
+    "name": "NodeProxy"
+  , "version": "0.0.5"
+  , "private": true
+  , "dependencies": {
+      "http-proxy": ">=0.8.0"
+  }
+}
